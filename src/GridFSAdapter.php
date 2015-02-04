@@ -63,6 +63,13 @@ class GridFSAdapter extends AbstractAdapter
     {
         $metadata = [];
 
+        if ($config->has('metadata')) {
+            $metadata = $config->get('metadata');
+            if (!is_array($metadata)) {
+                $metadata = [$metadata];
+            }
+        }
+
         if ($config->has('mimetype')) {
             $metadata['mimetype'] = $config->get('mimetype');
         }
