@@ -253,8 +253,11 @@ class GridFSAdapter extends AbstractAdapter
 
         $result['dirname'] = Util::dirname($result['path']);
 
-        if (isset($file->file['metadata']) && !empty($file->file['metadata']['mimetype'])) {
-            $result['mimetype'] = $file->file['metadata']['mimetype'];
+        if (isset($file->file['metadata'])) {
+            if(!empty($file->file['metadata']['mimetype'])) {
+                $result['mimetype'] = $file->file['metadata']['mimetype'];
+            }
+            $result['metadata'] = $file->file['metadata'];
         }
 
         return $result;
